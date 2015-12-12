@@ -5,7 +5,6 @@ class ChemicalLexer(object):
     '''
     Lexer for chemical formulae
     '''
-    #TODO: Remove curly braces
     TOKEN_TYPES = [
         (r'[A-Z][a-z]?', 'ELEMENT'),
         (r'[0-9]+',      'QUANTITY'),
@@ -22,7 +21,6 @@ class ChemicalLexer(object):
         self.pos = 0
         self.token_types = [(re.compile(pattern), tag) for pattern, tag in self.TOKEN_TYPES]
 
-    #TODO: Make 'Syntax Error' more descriptive
     def token_gen(self):
         '''
         Read through the formula and generate
@@ -40,4 +38,4 @@ class ChemicalLexer(object):
                 else:
                     continue
             if error:
-                raise Exception("Syntax Error")
+                raise Exception('Syntax Error:\nInvallid token in input "{}"\nstarting at position {}: "{}"'.format(self.formula, self.pos, self.formula[self.pos:]))

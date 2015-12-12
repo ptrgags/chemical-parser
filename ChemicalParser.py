@@ -87,7 +87,7 @@ class ChemicalParser(object):
             elif token.tag == 'RIGHT_GROUPING':
                 self.right_grouping(token)
             else:
-                raise Exception("Invalid Token!")
+                raise Exception("Invalid Token {}".format(token))
         if self.group_stack:
             raise Exception("Missing Grouping Symbol {}".format(self.current_group().closing_symbol()))
         return self.formula
