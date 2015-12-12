@@ -9,8 +9,8 @@ class ChemicalLexer(object):
     TOKEN_TYPES = [
         (r'[A-Z][a-z]?', 'ELEMENT'),
         (r'[0-9]+',      'QUANTITY'),
-        (r'\[|\(|\{',    'LEFT_GROUPING'),
-        (r'\]|\)|\}',    'RIGHT_GROUPING'),
+        (r'\[|\(',    'LEFT_GROUPING'),
+        (r'\]|\)',    'RIGHT_GROUPING'),
     ]
     def __init__(self, formula):
         '''
