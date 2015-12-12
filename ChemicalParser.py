@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+from ChemicalLexer import ChemicalLexer
+from tree import ElementNode, GroupingNode
+
 class ChemicalParser(object):
     '''
     Parser for chemical formulas. the
@@ -86,4 +90,21 @@ class ChemicalParser(object):
                 raise Exception("Invalid Token!")
         if self.group_stack:
             raise Exception("Missing Grouping Symbol {}".format(self.current_group().closing_symbol()))
-        return self.formula.get_atoms_dict()
+        return self.formula
+
+if __name__ == '__main__':
+    try:
+        while True:
+            formula = raw_input('formula> ')
+            if formula.lower() in ['quit', 'exit']:
+                raise KeyboardInterrupt
+            try:
+                parser = ChemicalParser(formula)
+                formula = parser.parse()
+                print "Chemical Composition of {}:".format(formula)
+                print formula.get_atoms_dict()
+            except Exception as e:
+                print e
+            print ''
+    except KeyboardInterrupt:
+        print "Bye."

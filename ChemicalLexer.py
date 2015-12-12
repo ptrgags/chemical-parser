@@ -1,3 +1,4 @@
+import re
 from Token import Token
 
 class ChemicalLexer(object):
